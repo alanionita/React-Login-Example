@@ -55,7 +55,7 @@ describe('APPLICATION ACTIONS', () => {
         request.respondWith({
           status: 200,
           response: {
-            application: {
+            "478738478783845873": {
               "scannedDocuments": {
                 "3467891234": {
                   "docType": "National Id",
@@ -83,7 +83,7 @@ describe('APPLICATION ACTIONS', () => {
         {
           type: types.FETCH_APPLICATION_BY_TOKEN_SUCCESS,
           payload: {
-            application: {
+            "478738478783845873": {
               "scannedDocuments": {
                 "3467891234": {
                   "docType": "National Id",
