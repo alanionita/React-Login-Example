@@ -1,4 +1,4 @@
-import App from './components/App';
+import AppContainer from './components/containers/AppContainer';
 
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -11,7 +11,7 @@ const Root = ({ store }) => (
   <Provider store={store}>
     <Router history={history}>
       <Switch>
-        <Route path="/" component={App} />
+        <Route path="/" component={AppContainer} />
       </Switch>
     </Router>
   </Provider>

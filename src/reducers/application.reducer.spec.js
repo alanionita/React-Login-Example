@@ -1,5 +1,5 @@
-import reducer from './applications.reducer';
-import { initialState } from './applications.reducer';
+import reducer from './application.reducer';
+import { initialState } from './application.reducer';
 import * as actions from '../actions/actions';
 
 describe('APPLICATION REDUCER', () => {
@@ -26,8 +26,8 @@ describe('APPLICATION REDUCER', () => {
                 }
             });
             const newState = reducer(initialState, action);
-            expect(typeof newState.applications).toBe('object');
-            expect(newState.applications).toEqual({
+            expect(typeof newState.data).toBe('object');
+            expect(newState.data).toEqual({
                 "78728378787283787": {
                     "scannedDocuments": {
                         "3467891234": {

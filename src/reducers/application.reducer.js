@@ -1,7 +1,8 @@
 import * as types from '../actions/types';
+import { insertItem, removeItem } from '../helpers'
 
 export const initialState = {
-  applications: {},
+  data: {},
   error: null,
   loading: false
 };
@@ -17,7 +18,7 @@ function reducer(prevState = initialState, action = {}) {
 
   if (action.type === types.FETCH_APPLICATION_BY_TOKEN_SUCCESS) {
     const newState = Object.assign({}, prevState);
-    newState.applications = Object.assign({}, prevState.applications, action.payload);
+    newState.data = Object.assign({}, prevState.data, action.payload);
     newState.loading = false;
     return newState;
   }
@@ -25,7 +26,7 @@ function reducer(prevState = initialState, action = {}) {
   if (action.type === types.FETCH_APPLICATION_BY_TOKEN_FAILED) {
     const newState = Object.assign({}, prevState);
     newState.error = action.payload;
-    newState.applications = Object.assign({}, prevState.applications);
+    newState.data = Object.assign({}, prevState.data);;
     newState.loading = false;
     return newState;
   }
