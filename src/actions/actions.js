@@ -20,3 +20,17 @@ export function fetchApplicationByTokenFailed (err) {
         payload: err
     };
 }
+
+export function fetchApplicationByToken (token) {
+    return function (dispatch) {
+        dispatch(fetchApplicationByTokenRequest());
+        return axios.get(`${process.env.REACT_APP_API_URL_APPLICATIONS}?token=${token}`)
+            .then(res => {
+                dispatch(fetchApplicationByTokenSuccess(res.data));
+            })
+            .catch(err => {
+                dispatch(fetchApplicationByTokenFailed(err));
+            });
+    };
+}
+
