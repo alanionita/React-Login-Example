@@ -1,9 +1,18 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 
+// REDUX
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import logger from 'redux-logger';
+import combinedReducer from './reducers/index';
+
+// STYLING
 import './index.css';
 
 // components
-import App from './components/App';
+import Root from './Root';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const store = createStore(combinedReducer, applyMiddleware(thunk, logger));
+
+render(<Root store={store}/>, document.getElementById('root'));
