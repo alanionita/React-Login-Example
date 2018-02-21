@@ -9,14 +9,14 @@ const middleware = [thunk];
 const mockStore = configureMockStore(middleware);
 
 describe('APPLICATION ACTIONS', () => {
-  describe('fetchApplicationByTokenRequest', () => {
+  describe('#fetchApplicationByTokenRequest', () => {
     test('returns \'FETCH APPLICATION BY TOKEN REQUEST\'', () => {
       expect(actions.fetchApplicationByTokenRequest()).toEqual({
         type: 'FETCH APPLICATION BY TOKEN REQUEST'
       });
     });
   });
-  describe('fetchApplicationByTokenSuccess', () => {
+  describe('#fetchApplicationByTokenSuccess', () => {
     test('returns \'FETCH APPLICATION BY TOKEN SUCCESS\' and payload', () => {
       const input = {
         token: '34345454545232'
@@ -27,7 +27,7 @@ describe('APPLICATION ACTIONS', () => {
       });
     });
   });
-  describe('fetchApplicationByTokenFailed ', () => {
+  describe('#fetchApplicationByTokenFailed ', () => {
     test('returns \'FETCH APPLICATION BY TOKEN FAILED\' and payload', () => {
       const err = {
         err: 'I am an error!'
@@ -39,7 +39,7 @@ describe('APPLICATION ACTIONS', () => {
     });
   });
 
-  describe('fetchApplicationByToken ASYNC', () => {
+  describe('#fetchApplicationByToken ASYNC', () => {
     beforeEach(function () {
       moxios.install();
     });

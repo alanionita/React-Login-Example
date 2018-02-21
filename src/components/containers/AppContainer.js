@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import App from '../presentational/App';
-import qs from 'query-string'
+import qs from 'query-string';
+import { objIsEmpty } from '../../helpers';
 
 // Redux
 import { connect } from 'react-redux';
@@ -13,8 +14,9 @@ class AppContainer extends React.Component {
     this.props.fetchApplicationByToken(token);
   }
   render () {
-    return (
-      <App applications={this.props.applications}/>
+    return ((objIsEmpty(this.props.application.data) === false) 
+        ? <App application={this.props.application.data}/> 
+        : <h2>Token not found!</h2>
     );
   }
 }
@@ -28,8 +30,9 @@ function mapDispatchToProps (dispatch) {
 }
 
 function mapStateToProps (state) {
+  console.log(state)
   return {
-    application: state.application.application,
+    application: state.application,
     loading: state.loading
   };
 }

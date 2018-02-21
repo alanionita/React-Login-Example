@@ -1,5 +1,4 @@
 import * as types from '../actions/types';
-import { insertItem, removeItem } from '../helpers'
 
 export const initialState = {
   data: {},

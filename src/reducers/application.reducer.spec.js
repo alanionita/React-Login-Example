@@ -6,7 +6,7 @@ describe('APPLICATION REDUCER', () => {
     test('is a function', () => {
         expect(typeof reducer).toBe('function');
     });
-    describe('fetchApplicationByToken', () => {
+    describe('#fetchApplicationByToken', () => {
         test('add one application to the new state', () => {
             const action = actions.fetchApplicationByTokenSuccess({
                 "78728378787283787": {

@@ -2,18 +2,18 @@ import React from 'react';
 import logo from '../../assets/logo.svg';
 import './App.css';
 
+// Component
+import SignInForm from './SignInForm'
+
 const App = props => {
-  const { applications } = props;
+  const { application } = props;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1 className="App-title">Welcome to React</h1>
-      </header>
-      <p className="App-intro">
-        To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-    </div>
+    <main className="App">
+      <div>
+        <h2>Sign In for APP #{application.token}</h2>
+        <SignInForm application={application}/>
+      </div>
+    </main>
   );
 };
 
