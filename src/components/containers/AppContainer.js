@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import App from '../presentational/App';
 import qs from 'query-string';
-import { objIsEmpty } from '../../helpers';
+import { objIsEmpty } from '../../helpers/utils';
 
 // Redux
 import { connect } from 'react-redux';
@@ -10,21 +10,20 @@ import * as actions from '../../actions/actions';
 
 class AppContainer extends React.Component {
   componentDidMount () {
-    const token = qs.parse(this.props.location.search).token;
-    this.props.fetchApplicationByToken(token);
+    const shortcode = qs.parse(this.props.location.search).shortcode;
+    this.props.findApplicationByShortcode(shortcode);
   }
   render () {
-    return ((objIsEmpty(this.props.application.data) === false) 
-        ? <App application={this.props.application.data}/> 
+    return this.props.foundApplication === true 
+        ? <App foundApplication={this.props.foundApplication}/> 
         : <h2>Token not found!</h2>
-    );
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
-    fetchApplicationByToken: (token) => {
-      dispatch(actions.fetchApplicationByToken(token));
+    findApplicationByShortcode: (shortcode) => {
+      dispatch(actions.findApplicationByShortcode(shortcode));
     }
   };
 }
@@ -32,13 +31,13 @@ function mapDispatchToProps (dispatch) {
 function mapStateToProps (state) {
   console.log(state)
   return {
-    application: state.application,
+    foundApplication: state.application.data.foundApplication,
     loading: state.loading
   };
 }
 
 AppContainer.propTypes = {
-  application: PropTypes.object
+  foundApplication: PropTypes.bool
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);
