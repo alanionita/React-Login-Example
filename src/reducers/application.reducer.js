@@ -9,22 +9,22 @@ export const initialState = {
 function reducer(prevState = initialState, action = {}) {
   if (!action) return prevState;
 
-  if (action.type === types.FETCH_APPLICATION_BY_TOKEN_REQUEST) {
+  if (action.type === types.FIND_APPLICATION_BY_SHORTCODE_REQUEST) {
     const newState = Object.assign({}, prevState);
     newState.loading = true;
     return newState;
   }
 
-  if (action.type === types.FETCH_APPLICATION_BY_TOKEN_SUCCESS) {
+  if (action.type === types.FIND_APPLICATION_BY_SHORTCODE_SUCCESS) {
     const newState = Object.assign({}, prevState);
     newState.data = Object.assign({}, prevState.data, action.payload);
     newState.loading = false;
     return newState;
   }
 
-  if (action.type === types.FETCH_APPLICATION_BY_TOKEN_FAILED) {
+  if (action.type === types.FIND_APPLICATION_BY_SHORTCODE_FAILED) {
     const newState = Object.assign({}, prevState);
-    newState.error = action.payload;
+    newState.error = action.payload.error;
     newState.data = Object.assign({}, prevState.data);;
     newState.loading = false;
     return newState;

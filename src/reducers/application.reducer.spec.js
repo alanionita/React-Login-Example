@@ -6,54 +6,28 @@ describe('APPLICATION REDUCER', () => {
     test('is a function', () => {
         expect(typeof reducer).toBe('function');
     });
-    describe('#fetchApplicationByToken', () => {
+    describe('#findApplicationByShortcode', () => {
         test('add one application to the new state', () => {
-            const action = actions.fetchApplicationByTokenSuccess({
-                "78728378787283787": {
-                    "scannedDocuments": {
-                        "3467891234": {
-                            "docType": "National Id",
-                            "docNumber": "190088778784"
-                        },
-                        "8989898988": {
-                            "docType": "Proof of Address",
-                            "documentIssuer": "Santander Bank"
-                        }
-                    },
-                    "certificates": {
-                        "000999847747": "this is certificate number 1 for David"
-                    }
-                }
+            const action = actions.findApplicationByShortcodeSuccess({
+                foundApplication: true
             });
             const newState = reducer(initialState, action);
             expect(typeof newState.data).toBe('object');
             expect(newState.data).toEqual({
-                "78728378787283787": {
-                    "scannedDocuments": {
-                        "3467891234": {
-                            "docType": "National Id",
-                            "docNumber": "190088778784"
-                        },
-                        "8989898988": {
-                            "docType": "Proof of Address",
-                            "documentIssuer": "Santander Bank"
-                        }
-                    },
-                    "certificates": {
-                        "000999847747": "this is certificate number 1 for David"
-                    }
-                }
+                foundApplication: true
             });
         });
         test('changes the loading property in the new state', () => {
-            const action = actions.fetchApplicationByTokenRequest();
+            const action = actions.findApplicationByShortcodeRequest();
             const newState = reducer(initialState, action);
             expect(newState.loading).toBe(true);
         });
         test('returns the error if it fails', () => {
-            const action = actions.fetchApplicationByTokenFailed('error');
+            const action = actions.findApplicationByShortcodeFailed({
+                error: 'UUID not found'
+            });
             const newState = reducer(initialState, action);
-            expect(newState.error).toEqual('error');
+            expect(newState.error).toEqual('UUID not found');
         });
     });
 });

@@ -1,35 +1,35 @@
 import * as types from "./types"
 import axios from "axios"
 
-export function fetchApplicationByTokenRequest () {
+export function findApplicationByShortcodeRequest () {
     return {
-        type: types.FETCH_APPLICATION_BY_TOKEN_REQUEST
+        type: types.FIND_APPLICATION_BY_SHORTCODE_REQUEST
     };
 }
 
-export function fetchApplicationByTokenSuccess (application) {
+export function findApplicationByShortcodeSuccess (foundApplication) {
     return {
-        type: types.FETCH_APPLICATION_BY_TOKEN_SUCCESS,
-        payload: application
+        type: types.FIND_APPLICATION_BY_SHORTCODE_SUCCESS,
+        payload: foundApplication
     };
 }
 
-export function fetchApplicationByTokenFailed (err) {
+export function findApplicationByShortcodeFailed (err) {
     return {
-        type: types.FETCH_APPLICATION_BY_TOKEN_FAILED,
+        type: types.FIND_APPLICATION_BY_SHORTCODE_FAILED,
         payload: err
     };
 }
 
-export function fetchApplicationByToken (token) {
+export function findApplicationByShortcode (shortcode) {
     return function (dispatch) {
-        dispatch(fetchApplicationByTokenRequest());
-        return axios.get(`${process.env.REACT_APP_API_URL_APPLICATIONS}?token=${token}`)
+        dispatch(findApplicationByShortcodeRequest());
+        return axios.get(`${process.env.REACT_APP_API_URL_APPLICATIONS}/applications/${shortcode}`)
             .then(res => {
-                dispatch(fetchApplicationByTokenSuccess(res.data));
+                dispatch(findApplicationByShortcodeSuccess(res.data));
             })
             .catch(err => {
-                dispatch(fetchApplicationByTokenFailed(err));
+                dispatch(findApplicationByShortcodeFailed(err));
             });
     };
 }

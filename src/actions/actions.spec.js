@@ -9,37 +9,37 @@ const middleware = [thunk];
 const mockStore = configureMockStore(middleware);
 
 describe('APPLICATION ACTIONS', () => {
-  describe('#fetchApplicationByTokenRequest', () => {
-    test('returns \'FETCH APPLICATION BY TOKEN REQUEST\'', () => {
-      expect(actions.fetchApplicationByTokenRequest()).toEqual({
-        type: 'FETCH APPLICATION BY TOKEN REQUEST'
+  describe('#findApplicationByShortcodeRequest', () => {
+    test('returns \'FIND APPLICATION BY SHORTCODE REQUEST\'', () => {
+      expect(actions.findApplicationByShortcodeRequest()).toEqual({
+        type: 'FIND APPLICATION BY SHORTCODE REQUEST'
       });
     });
   });
-  describe('#fetchApplicationByTokenSuccess', () => {
-    test('returns \'FETCH APPLICATION BY TOKEN SUCCESS\' and payload', () => {
+  describe('#findApplicationByShortcodeSuccess', () => {
+    test('returns \'FIND APPLICATION BY SHORTCODE SUCCESS\' and payload', () => {
       const input = {
-        token: '34345454545232'
+        foundApplication: true
       };
-      expect(actions.fetchApplicationByTokenSuccess(input)).toEqual({
-        type: 'FETCH APPLICATION BY TOKEN SUCCESS',
+      expect(actions.findApplicationByShortcodeSuccess(input)).toEqual({
+        type: 'FIND APPLICATION BY SHORTCODE SUCCESS',
         payload: input
       });
     });
   });
-  describe('#fetchApplicationByTokenFailed ', () => {
-    test('returns \'FETCH APPLICATION BY TOKEN FAILED\' and payload', () => {
+  describe('#fetchApplicationByShortcodeFailed ', () => {
+    test('returns \'FIND APPLICATION BY SHORTCODE FAILED\' and payload', () => {
       const err = {
-        err: 'I am an error!'
+        error: "UUID not found"
       };
-      expect(actions.fetchApplicationByTokenFailed(err)).toEqual({
-        type: 'FETCH APPLICATION BY TOKEN FAILED',
+      expect(actions.findApplicationByShortcodeFailed(err)).toEqual({
+        type: 'FIND APPLICATION BY SHORTCODE FAILED',
         payload: err
       });
     });
   });
 
-  describe('#fetchApplicationByToken ASYNC', () => {
+  describe('#findApplicationByShortcode ASYNC', () => {
     beforeEach(function () {
       moxios.install();
     });
@@ -49,27 +49,13 @@ describe('APPLICATION ACTIONS', () => {
     });
 
     test('returns correct series of actions and payload if succesful', () => {
-      const token = '478738478783845873';
+      const shortcode = 'cats-like-mice';
       moxios.wait(() => {
         const request = moxios.requests.mostRecent();
         request.respondWith({
           status: 200,
           response: {
-            "478738478783845873": {
-              "scannedDocuments": {
-                "3467891234": {
-                  "docType": "National Id",
-                  "docNumber": "190088778784"
-                },
-                "8989898988": {
-                  "docType": "Proof of Address",
-                  "documentIssuer": "Santander Bank"
-                }
-              },
-              "certificates": {
-                "000999847747": "this is certificate number 1 for David"
-              }
-            }
+            foundApplication: true
           }
         });
       });
@@ -79,29 +65,15 @@ describe('APPLICATION ACTIONS', () => {
       });
 
       const expectedActions = [
-        { type: types.FETCH_APPLICATION_BY_TOKEN_REQUEST },
+        { type: types.FIND_APPLICATION_BY_SHORTCODE_REQUEST },
         {
-          type: types.FETCH_APPLICATION_BY_TOKEN_SUCCESS,
+          type: types.FIND_APPLICATION_BY_SHORTCODE_SUCCESS,
           payload: {
-            "478738478783845873": {
-              "scannedDocuments": {
-                "3467891234": {
-                  "docType": "National Id",
-                  "docNumber": "190088778784"
-                },
-                "8989898988": {
-                  "docType": "Proof of Address",
-                  "documentIssuer": "Santander Bank"
-                }
-              },
-              "certificates": {
-                "000999847747": "this is certificate number 1 for David"
-              }
-            }
+            foundApplication: true
           }
         }
       ];
-      return store.dispatch(actions.fetchApplicationByToken(token)).then(() => {
+      return store.dispatch(actions.findApplicationByShortcode(shortcode)).then(() => {
         expect(store.getActions()).toEqual(expectedActions);
       });
     });
