@@ -35,11 +35,10 @@ describe('APPLICATION REDUCER', () => {
             const action = actions.validateSignInDetailsSuccess({
                 detailsValidated: true
             });
+            expect(initialState.detailsValidated).toEqual(false);
             const newState = reducer(initialState, action);
-            expect(typeof newState.data).toBe('object');
-            expect(newState.data).toEqual({
-                detailsValidated: true
-            });
+            expect(typeof newState.detailsValidated).toBe('boolean');
+            expect(newState.detailsValidated).toEqual(true);
         });
         test('changes the loading property in the new state', () => {
             const action = actions.validateSignInDetailsRequest();

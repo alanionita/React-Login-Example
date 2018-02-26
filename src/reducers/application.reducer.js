@@ -2,6 +2,7 @@ import * as types from '../actions/types';
 
 export const initialState = {
   data: {},
+  detailsValidated: false,
   error: null,
   loading: false
 };
@@ -38,7 +39,7 @@ function reducer(prevState = initialState, action = {}) {
 
   if (action.type === types.VALIDATE_SIGN_IN_DETAILS_SUCCESS) {
     const newState = Object.assign({}, prevState);
-    newState.data = Object.assign({}, prevState.data, action.payload);
+    newState.detailsValidated = action.payload.detailsValidated;
     newState.loading = false;
     return newState;
   }
@@ -46,7 +47,7 @@ function reducer(prevState = initialState, action = {}) {
   if (action.type === types.VALIDATE_SIGN_IN_DETAILS_FAILED) {
     const newState = Object.assign({}, prevState);
     newState.error = action.payload.error;
-    newState.data = Object.assign({}, prevState.data);;
+    newState.detailsValidated = prevState.data.detailsValidated;
     newState.loading = false;
     return newState;
   }
