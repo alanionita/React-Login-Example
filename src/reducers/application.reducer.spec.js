@@ -30,4 +30,28 @@ describe('APPLICATION REDUCER', () => {
             expect(newState.error).toEqual('UUID not found');
         });
     });
+    describe('#validateSignInDetails', () => {
+        test('add validation token to state', () => {
+            const action = actions.validateSignInDetailsSuccess({
+                detailsValidated: true
+            });
+            const newState = reducer(initialState, action);
+            expect(typeof newState.data).toBe('object');
+            expect(newState.data).toEqual({
+                detailsValidated: true
+            });
+        });
+        test('changes the loading property in the new state', () => {
+            const action = actions.validateSignInDetailsRequest();
+            const newState = reducer(initialState, action);
+            expect(newState.loading).toBe(true);
+        });
+        test('returns the error if it fails', () => {
+            const action = actions.validateSignInDetailsFailed({
+                error: 'Wrong document type and document number combination'
+            });
+            const newState = reducer(initialState, action);
+            expect(newState.error).toEqual('Wrong document type and document number combination');
+        });
+    });    
 });
