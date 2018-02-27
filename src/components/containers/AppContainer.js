@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import App from '../presentational/App';
 import qs from 'query-string';
-import { objIsEmpty } from '../../helpers/utils';
 
 // Redux
 import { connect } from 'react-redux';

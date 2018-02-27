@@ -113,7 +113,7 @@ const selector = formValueSelector('signInForm') // <-- same as form name
 SignInForm = connect(state => {
     // select together as a group
     const docTypeSelected = selector(state, 'docType')
-    const { docNumber, issueDate, postcode } = selector(state, 'docType', 'docNumber', 'issueDate', 'postcode')
+    const { docNumber, issueDate, postcode } = selector(state, 'docNumber', 'issueDate', 'postcode')
     return {
         docTypeSelected,
         docNumber,
