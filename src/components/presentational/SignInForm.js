@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import qs from 'query-string';
 
 // Redux
 import { connect } from 'react-redux'
-import { Field, reduxForm, formValueSelector } from 'redux-form';
+import { Field, reduxForm, formValueSelector, SubmissionError } from 'redux-form';
 
 // Components
 import Dashboard from './Dashboard';
@@ -23,7 +22,11 @@ let SignInForm = (props) => {
         error
     } = props;
     const submit = values => {
-        validateSignInDetails(shortcode, values)
+        if (typeof validateSignInDetails(shortcode, values) === Error) {
+            throw new SubmissionError(validateSignInDetails(shortcode, values));
+        } else {
+            validateSignInDetails(shortcode, values);
+        }
     }
     if (detailsValidated) {
         return (
@@ -32,10 +35,10 @@ let SignInForm = (props) => {
     } else {
         return (
             <form onSubmit={handleSubmit(submit)}>
-                <section>
-                    <p>Choose a scanned document to verify</p>
+                <div>
+                    <p>Which document would you like to use?</p>
                     <div>
-                        <label htmlFor="docType">Pick a document:</label>
+                        <label htmlFor="docType">Available documents:</label>
                         <div>
                             <label>
                                 <Field
@@ -77,6 +80,8 @@ let SignInForm = (props) => {
                     </div>
                     {docTypeSelected && (
                         <div>
+                            <p>Perfect you've chosen your document!</p>
+                            <p>Now verify the document by entering the correct document number</p>
                             <label>Enter document number</label>
                             <div>
                                 <Field
@@ -88,12 +93,12 @@ let SignInForm = (props) => {
                             </div>
                         </div>
                     )}
-                </section>
-                <section>
+                </div>
+                <div>
                     <button type="submit">
                         Sign In
                             </button>
-                </section>
+                </div>
                 {error && <strong>{error}</strong>}
             </form>
         );

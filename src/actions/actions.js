@@ -1,5 +1,6 @@
 import * as types from "./types"
 import axios from "axios"
+import { SubmissionError } from 'redux-form';
 
 export function findApplicationByShortcodeRequest () {
     return {
@@ -62,8 +63,8 @@ export function validateSignInDetails (shortcode, userInput) {
                 dispatch(validateSignInDetailsSuccess(res.data));
             })
             .catch(err => {
-                console.log(err)
-                dispatch(validateSignInDetailsFailed(err));
+                const validationError = new SubmissionError(err)
+                dispatch(validateSignInDetailsFailed(validationError));
             });
     };
 }

@@ -46,13 +46,14 @@ describe('APPLICATION REDUCER', () => {
             expect(newState.loading).toBe(true);
         });
         test('returns the error if it fails', () => {
-            const action = actions.validateSignInDetailsFailed({
-                error: 'Wrong document type and document number combination'
-            });
+            // define test error
+            let error = new Error();
+            error.message = 'Wrong document type and document number combination';
+            error.status = 404;
+            // evaluate error
+            const action = actions.validateSignInDetailsFailed(error);
             const newState = reducer(initialState, action);
-            expect(newState.error).toEqual({
-                error: 'Wrong document type and document number combination'
-            });
+            expect(newState.error).toEqual(error);
         });
     });    
 });
