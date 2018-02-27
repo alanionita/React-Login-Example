@@ -50,7 +50,9 @@ describe('APPLICATION REDUCER', () => {
                 error: 'Wrong document type and document number combination'
             });
             const newState = reducer(initialState, action);
-            expect(newState.error).toEqual('Wrong document type and document number combination');
+            expect(newState.error).toEqual({
+                error: 'Wrong document type and document number combination'
+            });
         });
     });    
 });

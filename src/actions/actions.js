@@ -62,6 +62,7 @@ export function validateSignInDetails (shortcode, userInput) {
                 dispatch(validateSignInDetailsSuccess(res.data));
             })
             .catch(err => {
+                console.log(err)
                 dispatch(validateSignInDetailsFailed(err));
             });
     };

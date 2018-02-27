@@ -6,16 +6,16 @@ import './App.css';
 // Component
 import SignInForm from './SignInForm'
 
-const App = ({ foundApplication, validateSignInDetails, shortcode, detailsValidated }) => {
+const App = ({ foundApplication, validateSignInDetails, shortcode, detailsValidated, error }) => {
   return (
     <main className="App">
       <div>
         <h1>Welcome to Spotlite</h1>
-        <p>Choose a scanned document to verify</p>
         <SignInForm 
           validateSignInDetails={validateSignInDetails}
           shortcode={shortcode}
           detailsValidated={detailsValidated}
+          error={error}
         />
       </div>
     </main>

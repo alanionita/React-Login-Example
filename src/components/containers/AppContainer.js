@@ -19,6 +19,7 @@ class AppContainer extends React.Component {
             validateSignInDetails={this.props.validateSignInDetails}
             shortcode={qs.parse(this.props.location.search).shortcode}
             detailsValidated={this.props.detailsValidated}
+            error={this.props.error}
           /> 
         : <h2>Token not found!</h2>
   }
@@ -40,6 +41,7 @@ function mapStateToProps (state) {
   return {
     foundApplication: state.application.data.foundApplication,
     detailsValidated: state.application.detailsValidated,
+    error: state.application.error,
     loading: state.loading
   };
 }

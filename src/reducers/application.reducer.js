@@ -46,8 +46,7 @@ function reducer(prevState = initialState, action = {}) {
 
   if (action.type === types.VALIDATE_SIGN_IN_DETAILS_FAILED) {
     const newState = Object.assign({}, prevState);
-    newState.error = action.payload.error;
-    newState.detailsValidated = prevState.data.detailsValidated;
+    newState.error = action.payload;
     newState.loading = false;
     return newState;
   }
