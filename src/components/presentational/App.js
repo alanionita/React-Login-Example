@@ -6,7 +6,7 @@ import SignInForm from './SignInForm'
 
 const App = ({ foundApplication, validateSignInDetails, shortcode, detailsValidated, error }) => {
   return (
-    <section className="background">
+    <section className="container">
       <div className="card">
         <h1>Welcome to Spotlite</h1>
         <p>Before we can take you to your certificates we need to make sure you're you!</p>

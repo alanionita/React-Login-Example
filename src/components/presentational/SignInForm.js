@@ -22,11 +22,7 @@ let SignInForm = (props) => {
         error
     } = props;
     const submit = values => {
-        if (typeof validateSignInDetails(shortcode, values) === Error) {
-            throw new SubmissionError(validateSignInDetails(shortcode, values));
-        } else {
             validateSignInDetails(shortcode, values);
-        }
     }
     if (detailsValidated) {
         return (

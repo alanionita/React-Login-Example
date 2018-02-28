@@ -1,7 +1,7 @@
 import React from "react";
 
 const AppNotFound = () => (
-  <section className="background">
+  <section className="container">
     <div className="card">
       <h1>Oops!</h1>
       <p>We couldn't find your application!</p>

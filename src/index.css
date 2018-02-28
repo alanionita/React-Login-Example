@@ -9,19 +9,15 @@ body {
   color: black;
 }
 
-section {
+.container {
   width: 100%;
   padding: 0 7%;
-  display: table;
   margin: 0;
   max-width: none;
   height: 100vh;
   display: grid;
   align-items: center;
   justify-content: center;
-}
-
-.background {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
