@@ -7,6 +7,9 @@ import qs from 'query-string';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/actions';
 
+// Components
+import AppNotFound from '../presentational/AppNotFound'
+
 class AppContainer extends React.Component {
   componentDidMount () {
     const shortcode = qs.parse(this.props.location.search).shortcode;
@@ -21,7 +24,7 @@ class AppContainer extends React.Component {
             detailsValidated={this.props.detailsValidated}
             error={this.props.error}
           /> 
-        : <h2>Token not found!</h2>
+        : <AppNotFound/>
   }
 }
 
