@@ -19,8 +19,6 @@ let SignInForm = props => {
     docType,
     docTypeSelected,
     docNumber,
-    issueDate,
-    postcode,
     validateSignInDetails,
     shortcode,
     detailsValidated,
@@ -90,7 +88,7 @@ let SignInForm = props => {
           </div>
           {docTypeSelected && (
             <div>
-              <label>Enter document number</label>
+              <label>Document number</label>
               <div>
                 <Field
                   name="docNumber"
@@ -120,17 +118,10 @@ const selector = formValueSelector("signInForm"); // <-- same as form name
 SignInForm = connect(state => {
   // select together as a group
   const docTypeSelected = selector(state, "docType");
-  const { docNumber, issueDate, postcode } = selector(
-    state,
-    "docNumber",
-    "issueDate",
-    "postcode"
-  );
+  const docNumber = selector(state, "docNumber");
   return {
     docTypeSelected,
-    docNumber,
-    issueDate,
-    postcode
+    docNumber
   };
 })(SignInForm);
 
