@@ -33,73 +33,65 @@ let SignInForm = props => {
     return (
       <form onSubmit={handleSubmit(submit)}>
         <div>
+          <label htmlFor="docType">Choose a scanned document to verify</label>
+          <div className="row">
+            <label className="card-mini">
+              <i className="icon passport" />
+              <Field
+                name="docType"
+                component="input"
+                type="radio"
+                value="Passport"
+              />{" "}
+              Passport
+            </label>
+            <label className="card-mini">
+              <i className="icon driving-license" />
+              <Field
+                name="docType"
+                component="input"
+                type="radio"
+                value="Driving License"
+              />{" "}
+              Driving License
+            </label>
+
+            <label className="card-mini">
+              <i className="icon identity-card" />
+              <Field
+                name="docType"
+                component="input"
+                type="radio"
+                value="Identity Card"
+              />{" "}
+              Identity Card
+            </label>
+
+            <label className="card-mini">
+              <i className="icon proof-of-address" />
+              <Field
+                name="docType"
+                component="input"
+                type="radio"
+                value="Proof of Address"
+              />{" "}
+              Proof of Address
+            </label>
+          </div>
+        </div>
+        {docTypeSelected && (
           <div>
-            <label htmlFor="docType">Choose a scanned document to verify</label>
-            <div className="row">
-              <div className="card-mini">
-                <label>
-                  <i className="icon passport" />
-                  <Field
-                    name="docType"
-                    component="input"
-                    type="radio"
-                    value="Passport"
-                  />{" "}
-                  Passport
-                </label>
-              </div>
-              <div className="card-mini">
-                <label>
-                  <i className="icon driving-license" />
-                  <Field
-                    name="docType"
-                    component="input"
-                    type="radio"
-                    value="Driving License"
-                  />{" "}
-                  Driving License
-                </label>
-              </div>
-              <div className="card-mini">
-                <label>
-                  <i className="icon identity-card" />
-                  <Field
-                    name="docType"
-                    component="input"
-                    type="radio"
-                    value="Identity Card"
-                  />{" "}
-                  Identity Card
-                </label>
-              </div>
-              <div className="card-mini">
-                <label>
-                  <i className="icon proof-of-address" />
-                  <Field
-                    name="docType"
-                    component="input"
-                    type="radio"
-                    value="Proof of Address"
-                  />{" "}
-                  Proof of Address
-                </label>
-              </div>
+            <label>Document number</label>
+            <div>
+              <Field
+                name="docNumber"
+                component="input"
+                type="text"
+                placeholder="Enter document number"
+              />
             </div>
           </div>
-          {docTypeSelected && (
-            <div>
-              <label>Document number</label>
-              <div>
-                <Field
-                  name="docNumber"
-                  component="input"
-                  type="text"
-                  placeholder="Enter document number"
-                />
-              </div>
-            </div>
-          )}
-        </div>
+        )}
         <button type="submit" className="button">
           Sign In
         </button>
