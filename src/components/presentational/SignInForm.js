@@ -41,48 +41,50 @@ let SignInForm = props => {
               <div className="card-mini">
                 <label>
                   <i className="icon passport" />
-                  <label>Passport</label>
                   <Field
                     name="docType"
                     component="input"
                     type="radio"
                     value="Passport"
-                  />
+                  />{" "}
+                  Passport
                 </label>
               </div>
               <div className="card-mini">
                 <label>
                   <i className="icon driving-license" />
-                  <label>Driving License</label>
                   <Field
                     name="docType"
                     component="input"
                     type="radio"
                     value="Driving License"
-                  />
+                  />{" "}
+                  Driving License
                 </label>
               </div>
               <div className="card-mini">
                 <label>
                   <i className="icon identity-card" />
-                  <label>Identity Card</label>
                   <Field
                     name="docType"
                     component="input"
                     type="radio"
                     value="Identity Card"
-                  />
+                  />{" "}
+                  Identity Card
                 </label>
               </div>
               <div className="card-mini">
-                <i className="icon proof-of-address" />
-                <label>Proof of Address</label>
-                <Field
-                  name="docType"
-                  component="input"
-                  type="radio"
-                  value="Proof of Address"
-                />
+                <label>
+                  <i className="icon proof-of-address" />
+                  <Field
+                    name="docType"
+                    component="input"
+                    type="radio"
+                    value="Proof of Address"
+                  />{" "}
+                  Proof of Address
+                </label>
               </div>
             </div>
           </div>
