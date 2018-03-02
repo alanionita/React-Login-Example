@@ -1,4 +1,5 @@
 import AppContainer from './components/containers/AppContainer';
+import Dashboard from './components/presentational/Dashboard';
 
 import React from 'react';
 import PropTypes from 'prop-types';

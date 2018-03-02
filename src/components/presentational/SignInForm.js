@@ -32,55 +32,20 @@ let SignInForm = props => {
   } else {
     return (
       <form onSubmit={handleSubmit(submit)}>
-        <div>
-          <label htmlFor="docType">Choose a scanned document to verify</label>
-          <div className="row">
-            <label className="card-mini">
-              <i className="icon passport" />
-              <Field
-                name="docType"
-                component="input"
-                type="radio"
-                value="Passport"
-              />{" "}
-              Passport
-            </label>
-            <label className="card-mini">
-              <i className="icon driving-license" />
-              <Field
-                name="docType"
-                component="input"
-                type="radio"
-                value="Driving License"
-              />{" "}
-              Driving License
-            </label>
-
-            <label className="card-mini">
-              <i className="icon identity-card" />
-              <Field
-                name="docType"
-                component="input"
-                type="radio"
-                value="Identity Card"
-              />{" "}
-              Identity Card
-            </label>
-
-            <label className="card-mini">
-              <i className="icon proof-of-address" />
-              <Field
-                name="docType"
-                component="input"
-                type="radio"
-                value="Proof of Address"
-              />{" "}
-              Proof of Address
-            </label>
-          </div>
-        </div>
+        <section>
+            <label>Choose a scanned document to verify</label>
+            <div className="doc-select">
+              <Field name="docType" component="select">
+                <option value="">Select an option</option>
+                <option value="Passport">Passport</option>
+                <option value="Driving License">Driving License</option>
+                <option value="Identity Card">Identity Card</option>
+                <option value="Proof of Address">Proof of Address</option>
+              </Field>
+            </div>
+        </section>
         {docTypeSelected && (
-          <div>
+          <section>
             <label>Document number</label>
             <div>
               <Field
@@ -90,7 +55,7 @@ let SignInForm = props => {
                 placeholder="Enter document number"
               />
             </div>
-          </div>
+          </section>
         )}
         <button type="submit" className="button">
           Sign In
