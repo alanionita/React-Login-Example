@@ -90,6 +90,7 @@ input[type="radio"] {
 }
 
 .card-mini p {
+  text-align: center;
   word-wrap: normal;
 }
 
@@ -206,7 +207,7 @@ input[type="radio"] {
   transition: 0.3s;
   background: #e7ebf1;
   border-radius: 5px;
-  height: 50%;
+  height: 5vh;
   width: 100%;
   justify-content: flex-start;
   align-items: center;
